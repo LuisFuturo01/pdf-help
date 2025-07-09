@@ -1,0 +1,1333 @@
+Práctica Nro1
+
+A: Realizar los siguientes ejercicios en UML y Pseudocodigo
+1. Identifica y representa en diagramas UML, 4 clases y tres metodos de cada uno de los siguientes contextos (Represente cada clase de UML)
+a) Crisis economica en Bolivia
+    - class EconomiaBolivia{
+            private:
+                double inflacion;
+                double capital;
+                double tasaDesempleo;
+                double pib;
+            public:
+                EconomiaBolivia(double inflacion, double capital, double tasaDesempleo, double pib){
+                    this.inflacion <- inflacion;
+                    this.capital <- capital;
+                    this.tasaDesempleo <- tasaDesempleo;
+                    this.pib <- pib;
+                }
+                actualizarCapital(double capital){
+                    this.capital <- capital;
+                }
+                double calcularIndiceCrisis(){
+                    return (this.inflacion*2+this.tasaDesempleo*3)-this.pib/1000;
+                }
+                mostrarEstadoEconomico(){
+                    print("PIB: "+this.pib+" inflacion: "+this.inflacion+" desempleo: "+this.tasaDesempleo+" capital: "+this.capital);
+                }
+        }
+        class mainEconomiaBolivia{
+            Function main(){
+                EconomiaBolivia bolivia <- new EconomiaBolivia(8.2,45200.9, 15, 1200);
+                bolivia.actualizarCapital(42100.0);
+                print(bolivia.calcularIndiceCrisis());
+                bolivia.mostrarEstadoEconomico();
+            }
+        }
+    - class Gobierno{
+            private:
+                String nombrePresidente;
+                double presupuesto;
+                String[] medidasEconomicas;
+                int totalMedidas;
+            public:
+                Gobierno(String nombre, double presupuesto){
+                    this.nombrePresidente <- nombre;
+                    this.presupuesto <- presupuesto;
+                    this.medidasEconomicas <- new String[15];
+                    this.totalMedidas <- 0;
+                }
+                implementarMedida(String medida){
+                    if (this.totalMedidas < 15) {
+                        this.medidasEconomicas[this.totalMedidas] <- medida;
+                        this.totalMedidas <- this.totalMedidas + 1;
+                    } else {
+                        print("Ya no se pueden agregar mas medidas");
+                    }
+                }
+                reducirGastoPublico(double monto){
+                    this.presupuesto <- this.presupuesto - monto;
+                }
+                mostrarPoliticas(){
+                    print("--- Politicas Economicas del Gobierno de " + this.nombrePresidente + " ---");
+                    for(int i <- 0; i < this.totalMedidas ; i++){
+                        print("Medida: "+this.medidasEconomicas[i]);
+                    };
+                    if(this.totalMedidas == 0){
+                        print("No se han implementado medidas economicas aun.");
+                    }
+                    print("Presupuesto actual: " + this.presupuesto);
+                }
+        }
+        class mainGobierno{
+                Gobierno gobiernoActual <- new Gobierno("Luis Arce", 3500000000.0);
+                gobiernoActual.mostrarPoliticas();
+                gobiernoActual.implementarMedida("Subsidio a productos basicos");
+                gobiernoActual.reducirGastoPublico(10000000.0);
+                gobiernoActual.mostrarPoliticas();
+        }
+    - class BancoCentral{
+            private:
+                double reservasInternacionales;
+                double tasaInteres;
+                String politicaMonetaria;
+            public:
+                BancoCentral(double reservas, double tasa, String politica){
+                    this.reservasInternacionales <- reservas;
+                    this.tasaInteres <- tasa;
+                    this.politicaMonetaria <- politica;
+                }
+                ajustarTasaInteres(double nuevaTasa){
+                    this.tasaInteres <- nuevaTasa;
+                }
+                inyectarLiquidez(double monto){
+                    this.reservasInternacionales <- this.reservasInternacionales + monto;
+                }
+                mostrarReservas(){
+                    print("Reservas Internacionales: "+this.reservasInternacionales);
+                    print("Tasa de Interes: "+this.tasaInteres);
+                    print("Politica Monetaria: "+this.politicaMonetaria);
+                }
+        }
+        class mainBancoCentral{
+                BancoCentral bc <- new BancoCentral(1500000000.0, 4.5, "Control de Inflacion");
+                bc.mostrarReservas();
+                bc.ajustarTasaInteres(5.0);
+                bc.inyectarLiquidez(50000000.0);
+                bc.mostrarReservas();
+        }
+    - class Ciudadano{
+            private:
+                String nombre;
+                double ingresos;
+                boolean empleado;
+            public:
+                Ciudadano(String nombre, double ingresos, boolean empleado){
+                    this.nombre <- nombre;
+                    this.ingresos <- ingresos;
+                    this.empleado <- empleado;
+                }
+                actualizarIngresos(double nuevosIngresos){
+                    this.ingresos <- nuevosIngresos;
+                }
+                cambiarEstadoEmpleo(boolean nuevoEstado){
+                    this.empleado <- nuevoEstado;
+                }
+                mostrarInformacion(){
+                    print("Nombre: "+this.nombre+" Ingresos: "+this.ingresos+" Empleado: "+this.empleado);
+                }
+        }
+        class mainCiudadano{
+            Function main(){
+                Ciudadano c1 <- new Ciudadano("Luis Zeballos", 3000.0, true);
+                c1.mostrarInformacion();
+                c1.actualizarIngresos(3500.0);
+                c1.cambiarEstadoEmpleo(false);
+                c1.mostrarInformacion();
+            }
+        }
+b) Curso de invierno de la carrera de informatica
+    - class Curso{
+            private:
+                String nombre;
+                String codigo;
+                int maxCapacidad;
+                int numeroInscripcion;
+            public:
+                Curso(String nombre, String codigo, int maxCapacidad){
+                    this.nombre <- nombre;
+                    this.codigo <- codigo;
+                    this.maxCapacidad <- maxCapacidad;
+                    this.numeroInscripcion <- 0;
+                }
+                anadirEstudiante(){
+                    if (this.currentInscripcion < this.maxCapacidad) {
+                        this.currentInscripcion <- this.currentInscripcion + 1;
+                    }else{
+	        Print(“Ya no se pueden inscribir estudiantes”);
+	    };
+                }
+                removerEstudiante(){
+                    if (this.currentInscripcion > 0) {
+                        this.currentInscripcion <- this.currentInscripcion - 1;
+                    }
+                }
+                boolean estaLleno(){
+                    return this.currentInscripcion == this.maxCapacidad;
+                }
+        }
+        class mainCurso{
+            Function main(){
+                Curso prog2 <- new Curso("Programacion II", "INF-121", 100);
+                print("Capacidad de programacion II: " + poo.maxCapacidad);
+                prog2.anadirEstudiante();
+                prog2.anadirEstudiante();
+                print("Inscritos en programacion II: " + poo.currentInscripcion);
+                print("programacion II esta lleno? " + poo.estaLleno());
+            }
+        }
+    - class Estudiante{
+            private:
+                String estudianteId;
+                String nombre;
+                String carrera;
+                String[] cursosInscritos;
+                int totalCursos;
+            public:
+                Estudiante(String estudianteId, String nombre, String carrera){
+                    this.estudianteId <- estudianteId;
+                    this.nombre <- nombre;
+                    this.carrera <- carrera;
+                    this.cursosInscritos <- new String[10];
+                    this.totalCursos <- 0;
+                }
+                inscribirEnCurso(String codigoCurso){
+                    if(this.totalCursos < 10){
+                        this.cursosInscritos[this.totalCursos] <- codigoCurso;
+                        this.totalCursos <- this.totalCursos + 1;
+                        print(this.nombre + " inscrito en " + codigoCurso);
+                    } else {
+                        print("el limite de cursos fue alcanzado para " + this.nombre);
+                    }
+                }
+                retirarCurso(String codigoCurso){
+                    for(int i <- 0; i < this.totalCursos; i++){
+                        if(this.cursosInscritos[i] == codigoCurso){
+                            for(int j <- i; j < this.totalCursos - 1; j++){
+                                this.cursosInscritos[j] <- this.cursosInscritos[j+1];
+                            }
+                            this.totalCursos <- this.totalCursos - 1;
+                            print(this.nombre + " se retiro de " + codigoCurso);
+                            return;
+                        }
+                    }
+                    print(codigoCurso + " no encontrado en los cursos de " + this.nombre);
+                }
+                mostrarCursos(){
+                    print("Cursos de " + this.nombre + ":");
+                    for(int i <- 0; i < this.totalCursos; i++){
+                        print(this.cursosInscritos[i]);
+                    }
+                }
+        }
+        class mainEstudiante{
+            Function main(){
+                Estudiante est1 <- new Estudiante("1886052", "Luis Zeballos", "Informatica");
+                est1.inscribirEnCurso("INF-121");
+                est1.inscribirEnCurso("INF-126");
+                est1.mostrarCursos();
+                est1.retirarCurso("INF-126");
+                est1.mostrarCursos();
+            }
+        }
+    - class Docente{
+            private:
+                String docenteId;
+                String nombre;
+                String especializacion;
+                String[] cursosAsignados;
+                int totalCursosAsignados;
+            public:
+                Docente(String docenteId, String nombre, String especializacion){
+                    this.docenteId <- docenteId;
+                    this.nombre <- nombre;
+                    this.especializacion <- especializacion;
+                    this.cursosAsignados <- new String[5];
+                    this.totalCursosAsignados <- 0;
+                }
+                asignarACurso(String codigoCurso){
+                    if(this.totalCursosAsignados < 5){
+                        this.cursosAsignados[this.totalCursosAsignados] <- codigoCurso;
+                        this.totalCursosAsignados <- this.totalCursosAsignados + 1;
+                        print(this.nombre + " asignado a " + codigoCurso);
+                    } else {
+                        print("Limite de cursos asignados alcanzado para " + this.nombre);
+                    }
+                }
+                liberarDeCurso(String codigoCurso){
+                    for(int i <- 0; i < this.totalCursosAsignados; i++){
+                        if(this.cursosAsignados[i] == codigoCurso){
+                            for(int j <- i; j < this.totalCursosAsignados - 1; j++){
+                                this.cursosAsignados[j] <- this.cursosAsignados[j+1];
+                            }
+                            this.totalCursosAsignados <- this.totalCursosAsignados - 1;
+                            print(this.nombre + " liberado de " + codigoCurso);
+                            return;
+                        }
+                    }
+                    print(codigoCurso + " no encontrado en los cursos de " + this.nombre);
+                }
+                mostrarCursosAsignados(){
+                    print("Cursos de " + this.nombre + ":");
+                    for(int i <- 0; i < this.totalCursosAsignados; i++){
+                        print("- " + this.cursosAsignados[i]);
+                    }
+                }
+        }
+        class mainDocente{
+            Function main(){
+                Docente doc1 <- new Docente("I001", "Ph. Tapia", "Web I");
+                doc1.asignarACurso("INF-121");
+                doc1.asignarACurso(“INF-113");
+                doc1.mostrarCursosAsignados();
+            }
+        }
+    - class Inscripcion{
+            private:
+                String inscripcionId;
+                String estudianteId;
+                String codigoCurso;
+                String fechaInscripcion;
+                boolean activa;
+            public:
+                Inscripcion(String inscripcionId, String estudianteId, String codigoCurso, String fechaInscripcion){
+                    this.inscripcionId <- inscripcionId;
+                    this.estudianteId <- estudianteId;
+                    this.codigoCurso <- codigoCurso;
+                    this.fechaInscripcion <- fechaInscripcion;
+                    this.activa <- true;
+                }
+                cancelarInscripcion(){
+                    this.activa <- false;
+                    print("Inscripcion " + this.inscripcionId + " cancelada.");
+                }
+                reactivarInscripcion(){
+                    this.activa <- true;
+                    print("Inscripcion " + this.inscripcionId + " reactivada.");
+                }
+                mostrarDetalles(){
+                    print("ID Inscripcion: " + this.inscripcionId + ", Estudiante: " + this.estudianteId +
+                          ", Curso: " + this.codigoCurso + ", Fecha: " + this.fechaInscripcion +
+                          ", Activa: " + this.activa);
+                }
+        }
+        class mainInscripcion{
+            Function main(){
+                Inscripcion ins1 <- new Inscripcion("00001", "1886052", "INF-121", "08-07-2025");
+                ins1.mostrarDetalles();
+                ins1.cancelarInscripcion();
+                ins1.mostrarDetalles();
+            }
+        }
+c) Aplicacion tiktok
+    - class Usuario{
+            private:
+                String usuarioNombre;
+                String usuarioId;
+                int seguidores;
+                int seguidos;
+                String[] videosSubidos;
+                int totalVideosSubidos;
+            public:
+                Usuario(String usuarioNombre, String usuarioId){
+                    this.usuarioNombre <- usuarioNombre;
+                    this.usuarioId <- usuarioId;
+                    this.seguidores <- 0;
+                    this.seguidos <- 0;
+                    this.videosSubidos <- new String[50];
+                    this.totalVideosSubidos <- 0;
+                }
+                seguirUsuario(Usuario segundoUsuario){
+                    this.seguidos <- this.seguidos + 1;
+                    segundoUsuario.seguidores <- segundoUsuario.seguidores + 1;
+                    print(this.usuarioNombre + " sigue a " + segundoUsuario.usuarioNombre);
+                }
+                subirVideo(String videoId){
+                    if(this.totalVideosSubidos < 50){
+                        this.videosSubidos[this.totalVideosSubidos] <- videoId;
+                        this.totalVideosSubidos <- this.totalVideosSubidos + 1;
+                        print(this.usuarioNombre + " subio el video " + videoId);
+                    } else {
+                        print("Limite de videos subidos alcanzado para " + this.usuarioNombre);
+                    }
+                }
+                verPerfil(){
+                    print("Perfil de " + this.usuarioNombre + ":");
+                    print("  ID: " + this.usuarioId);
+                    print("  Seguidores: " + this.seguidores);
+                    print("  Seguidos: " + this.seguidos);
+                    print("  Videos Subidos: " + this.totalVideosSubidos);
+                }
+        }
+        class mainUsuario{
+            Function main(){
+                Usuario user1 <- new Usuario("tiktokFan", "User001");
+                Usuario user2 <- new Usuario("bailarinPro", "User002");
+                user1.verPerfil();
+                user2.verPerfil();
+                user1.seguirUsuario(user2);
+                user1.subirVideo("video-1");
+                user1.verPerfil();
+                user2.verPerfil();
+            }
+        }
+    - class Video{
+            private:
+                String videoId;
+                String subidorId;
+                String descripcion;
+                int likes;
+                int vistas;
+                String[] comentarios;
+                int totalComentarios;
+            public:
+                Video(String videoId, String subidorId, String descripcion){
+                    this.videoId <- videoId;
+                    this.subidorId <- subidorId;
+                    this.descripcion <- descripcion;
+                    this.likes <- 0;
+                    this.vistas <- 0;
+                    this.comentarios <- new String[100];
+                    this.totalComentarios <- 0;
+                }
+                anadirLike(){
+                    this.likes <- this.likes + 1;
+                    print("Video " + this.videoId + " tiene " + this.likes + " likes.");
+                }
+                anadirVista(){
+                    this.vistas <- this.vistas + 1;
+                }
+                anadirComentario(String textoComentario){
+                    if(this.totalComentarios < 100){
+                        this.comentarios[this.totalComentarios] <- textoComentario;
+                        this.totalComentarios <- this.totalComentarios + 1;
+                        print("Nuevo comentario en video " + this.videoId + ": " + textoComentario);
+                    } else {
+                        print("Limite de comentarios alcanzado para video " + this.videoId);
+                    }
+                }
+        }
+        class mainVideo{
+            Function main(){
+                Video video1 <- new Video("video-1", "User001", "ICPC en Boivia");
+                video1.anadirVista();
+                video1.anadirLike();
+                video1.anadirComentario("mal explicado xd");
+                print("Vistas: " + video1.vistas + ", Likes: " + video1.likes);
+            }
+        }
+    - class Feed{
+           private:
+               String feedId;
+               String usuarioId;
+               String[] videosMostradosDescripciones;
+               int totalVideosMostrados;
+           public:
+               Feed(String feedId, String usuarioId){
+                   this.feedId <- feedId;
+                   this.usuarioId <- usuarioId;
+                   this.videosMostradosDescripciones <- new String[20];
+                   this.totalVideosMostrados <- 0;
+               }
+               cargarVideos(String[] preferenciasUsuario){
+                   if(this.totalVideosMostrados < 20){
+                       this.videosMostradosDescripciones[this.totalVideosMostrados] <- "video-1";
+                       this.totalVideosMostrados <- this.totalVideosMostrados + 1;
+                       this.videosMostradosDescripciones[this.totalVideosMostrados] <- "video-2";
+                       this.totalVideosMostrados <- this.totalVideosMostrados + 1;
+                   }
+                   print("Feed cargado para " + this.usuarioId);
+               }
+               refrescarFeed(){
+                   this.totalVideosMostrados <- 0;
+                   cargarVideos(new String[0]);
+                   print("Feed refrescado para " + this.usuarioId);
+               }
+               reproducirSiguienteVideo(){
+                   if(this.totalVideosMostrados > 0){
+                       print("Reproduciendo: " + this.videosMostradosDescripciones[0]);
+                   } else {
+                       print("No hay mas videos en el feed.");
+                   }
+               }
+       }
+       class mainFeed{
+           Function main(){
+               Feed feed1 <- new Feed("Feed1", "User001");
+               feed1.cargarVideos(new String[0]);
+               feed1.reproducirSiguienteVideo();
+               feed1.refrescarFeed();
+           }
+       }
+    - class Comentario{
+            private:
+                String comentarioId;
+                String videoId;
+                String usuarioId;
+                String texto;
+                String marcaTiempo;
+            public:
+                Comentario(String comentarioId, String videoId, String usuarioId, String texto, String marcaTiempo){
+                    this.comentarioId <- comentarioId;
+                    this.videoId <- videoId;
+                    this.usuarioId <- usuarioId;
+                    this.texto <- texto;
+                    this.marcaTiempo <- marcaTiempo;
+                }
+                editarTexto(String nuevoTexto){
+                    this.texto <- nuevoTexto;
+                    print("Comentario " + this.comentarioId + " editado a: " + nuevoTexto);
+                }
+                eliminarComentario(){
+                    print("Comentario " + this.comentarioId + " eliminado.");
+                }
+                mostrarComentario(){
+                    print("Comentario (" + this.comentarioId + ") de " + this.usuarioId + " en video " + this.videoId + ": " + this.texto + " (" + this.marcaTiempo + ")");
+                }
+        }
+        class mainComentario{
+            Function main(){
+                Comentario c1 <- new Comentario("Com-1", "Video-1", "User001", "Video Aburridisimo", "2025-07-08 23:59");
+                c1.mostrarComentario();
+                c1.editarTexto("Me encanto!");
+                c1.mostrarComentario();
+            }
+        }
+
+2. Crear la clase Cuadrado. Un cuadrado se define por:
+   Lado
+   Realizar las siguientes operaciones:
+   Leer datos
+   Mostrar datos
+   Calcular el area
+   Calcular el perimetro
+   Modificar el lado y calcular nuevamente el area y el perimetro
+   Mostrar Datos
+    - class Cuadrado{
+            private:
+                double lado;
+            public:
+                Cuadrado(){
+                    this.lado <- 0.0;
+                }
+                leerDatos(double nuevoLado){
+                    this.lado <- nuevoLado;
+                }
+                mostrarDatos(){
+                    print("Lado del Cuadrado: " + this.lado);
+                }
+                double calcularArea(){
+                    return this.lado * this.lado;
+                }
+                double calcularPerimetro(){
+                    return 4 * this.lado;
+                }
+                modificarLado(double nuevoLado){
+                    this.lado <- nuevoLado;
+                    print("Lado modificado a: " + this.lado);
+                    print("Nueva Area: " + calcularArea());
+                    print("Nuevo Perimetro: " + calcularPerimetro());
+                }
+        }
+    - class mainCuadrado{
+            Function main(){
+                Cuadrado miCuadrado <- new Cuadrado();
+                miCuadrado.leerDatos(5.0);
+                miCuadrado.mostrarDatos();
+                print("Area: " + miCuadrado.calcularArea());
+                print("Perimetro: " + miCuadrado.calcularPerimetro());
+                miCuadrado.modificarLado(7.0);
+            }
+        }
+
+3. Modela la clase Perro con atributos: nombre, raza y edad. Realizar las siguientes operaciones:
+   a. Crea un constructor para inicializar datos
+   b. Metodos getters y setters de cada atributo.
+   c. Muestra datos
+   d. Implementa los metodos: ladrar(), comer()
+   e. Verifica si la edad del perro es menor o igual a dos anos y muestra un mensaje de
+      que es cachorro
+    - class Perro{
+            private:
+                String nombre;
+                String raza;
+                int edad;
+            public:
+                Perro(String nombre, String raza, int edad){
+                    this.nombre <- nombre;
+                    this.raza <- raza;
+                    this.edad <- edad;
+                }
+                String getNombre(){
+                    return this.nombre;
+                }
+                String getRaza(){
+                    return this.raza;
+                }
+                int getEdad(){
+                    return this.edad;
+                }
+                setNombre(String nuevoNombre){
+                    this.nombre <- nuevoNombre;
+                }
+                setRaza(String nuevaRaza){
+                    this.raza <- nuevaRaza;
+                }
+                setEdad(int nuevaEdad){
+                    this.edad <- nuevaEdad;
+                }
+                mostrarDatos(){
+                    print("Nombre: " + this.nombre + ", Raza: " + this.raza + ", Edad: " + this.edad + " anos.");
+                }
+                ladrar(){
+                    print(this.nombre + " dice: Guau! Guau!");
+                }
+                comer(){
+                    print(this.nombre + " esta comiendo...");
+                }
+                esCachorro(){
+                    if (this.edad <= 2){
+                        print(this.nombre + " es un cachorro!");
+                    } else {
+                        print(this.nombre + " no es un cachorro.");
+                    }
+                }
+        }
+    - class mainPerro{
+            Function main(){
+                Perro miPerro <- new Perro("Max", "Golden Retriever", 3);
+                miPerro.mostrarDatos();
+                miPerro.ladrar();
+                miPerro.comer();
+                miPerro.esCachorro();
+
+                Perro cachorro <- new Perro("Buddy", "Pug", 1);
+                cachorro.mostrarDatos();
+                cachorro.esCachorro();
+                cachorro.setEdad(4);
+                cachorro.esCachorro();
+            }
+        }
+
+4. Modela la clase Celular:
+   a. Define atributos, 3 constructores diferentes.
+   b. Instanciar 3 objetos de forma diferente
+   c. Metodos getters y setters de cada atributo.
+   d. Calcula el costo de una llamada segun minutos.
+   e. Compara si dos celulares son de la misma marca.
+   f. Muestra el celular que tenga el sistema operativo iOS.
+    - class Celular{
+            private:
+                String marca;
+                String modelo;
+                String sistemaOperativo;
+                double precio;
+                int ramGB;
+                int almacenamientoGB;
+            public:
+                Celular(){
+                    this.marca <- "Desconocida";
+                    this.modelo <- "Generico";
+                    this.sistemaOperativo <- "Android";
+                    this.precio <- 0.0;
+                    this.ramGB <- 0;
+                    this.almacenamientoGB <- 0;
+                }
+                Celular(String marca, String modelo){
+                    this.marca <- marca;
+                    this.modelo <- modelo;
+                    this.sistemaOperativo <- "Android";
+                    this.precio <- 0.0;
+                    this.ramGB <- 0;
+                    this.almacenamientoGB <- 0;
+                }
+                Celular(String marca, String modelo, String sistemaOperativo, double precio, int ramGB, int almacenamientoGB){
+                    this.marca <- marca;
+                    this.modelo <- modelo;
+                    this.sistemaOperativo <- sistemaOperativo;
+                    this.precio <- precio;
+                    this.ramGB <- ramGB;
+                    this.almacenamientoGB <- almacenamientoGB;
+                }
+                String getMarca(){ return this.marca; }
+                String getModelo(){ return this.modelo; }
+                String getSistemaOperativo(){ return this.sistemaOperativo; }
+                double getPrecio(){ return this.precio; }
+                int getRamGB(){ return this.ramGB; }
+                int getAlmacenamientoGB(){ return this.almacenamientoGB; }
+                setMarca(String nuevaMarca){ this.marca <- nuevaMarca; }
+                setModelo(String nuevoModelo){ this.modelo <- nuevoModelo; }
+                setSistemaOperativo(String nuevoSO){ this.sistemaOperativo <- nuevoSO; }
+                setPrecio(double nuevoPrecio){ this.precio <- nuevoPrecio; }
+                setRamGB(int nuevaRamGB){ this.ramGB <- nuevaRamGB; }
+                setAlmacenamientoGB(int nuevoAlmacenamientoGB){ this.almacenamientoGB <- nuevoAlmacenamientoGB; }
+
+                double calcularCostoLlamada(int minutos){
+                    return minutos * 0.10;
+                }
+                boolean compararMarca(Celular otroCelular){
+                    return this.marca == otroCelular.marca;
+                }
+                mostrarDatos(){
+                    print("Marca: " + this.marca + ", Modelo: " + this.modelo + ", SO: " + this.sistemaOperativo +
+                          ", Precio: " + this.precio + ", RAM: " + this.ramGB + "GB, Almacenamiento: " + this.almacenamientoGB + "GB");
+                }
+        }
+    - class mainCelular{
+            Function main(){
+                Celular cel1 <- new Celular();
+                Celular cel2 <- new Celular("Samsung", "Galaxy S23");
+                Celular cel3 <- new Celular("Apple", "iPhone 15 Pro", "iOS", 1200.0, 8, 256);
+
+                cel1.setMarca("Xiaomi");
+                cel1.setModelo("Redmi Note 12");
+                cel1.setSistemaOperativo("Android");
+                cel1.setPrecio(250.0);
+                cel1.setRamGB(6);
+                cel1.setAlmacenamientoGB(128);
+
+                cel1.mostrarDatos();
+                cel2.mostrarDatos();
+                cel3.mostrarDatos();
+
+                print("Costo de llamada (cel1 por 10 min): " + cel1.calcularCostoLlamada(10));
+                print("cel1 y cel2 son de la misma marca? " + cel1.compararMarca(cel2));
+                print("cel2 y cel3 son de la misma marca? " + cel2.compararMarca(cel3));
+
+                print("--- Celulares con iOS ---");
+                if (cel1.getSistemaOperativo() == "iOS") {
+                    cel1.mostrarDatos();
+                }
+                if (cel2.getSistemaOperativo() == "iOS") {
+                    cel2.mostrarDatos();
+                }
+                if (cel3.getSistemaOperativo() == "iOS") {
+                    cel3.mostrarDatos();
+                }
+            }
+        }
+
+5. La tienda "Compre rapido" que vende celulares quiere tener registro de cada producto que posee. Para ello, se requiere crear un programa donde se pueda almacenar cada producto con su informacion.
+   Crea una entidad Movil con los atributos marca, precio, modelo, ramMemoria, almacenamiento (GB) y codigo (es un array numerico de dimension 7, donde cada subindice tendra un numero correspondiente al codigo).
+   A continuacion, se implementaran los siguientes metodos
+ - Un constructor por defecto y un constructor parametrizado. 
+- Métodos getters y setters de cada atributo. 
+- Instanciar 2 objetos de forma diferente
+ - Método ingresarCodigo(): este método permitirá ingresar el código completo de siete números de un celular. 
+- Se desea instalar la aplicación “Banca movil” que ocupa 60 MB, sin no existe espacio se deberá emitir un mensaje, caso contrario se deberá actualizar el almacenamiento.
+    - class Movil{
+            private:
+                String marca;
+                double precio;
+                String modelo;
+                int ramMemoriaGB;
+                int almacenamientoGB;
+                int[] codigo;
+            public:
+                Movil(){
+                    this.marca <- "";
+                    this.precio <- 0.0;
+                    this.modelo <- "";
+                    this.ramMemoriaGB <- 0;
+                    this.almacenamientoGB <- 0;
+                    this.codigo <- new int[7];
+                }
+                Movil(String marca, double precio, String modelo, int ramMemoriaGB, int almacenamientoGB, int[] codigo){
+                    this.marca <- marca;
+                    this.precio <- precio;
+                    this.modelo <- modelo;
+                    this.ramMemoriaGB <- ramMemoriaGB;
+                    this.almacenamientoGB <- almacenamientoGB;
+                    this.codigo <- new int[7];
+                    for(int i <- 0; i < 7; i++){
+                        this.codigo[i] <- codigo[i];
+                    }
+                }
+                String getMarca(){ return this.marca; }
+                double getPrecio(){ return this.precio; }
+                String getModelo(){ return this.modelo; }
+                int getRamMemoriaGB(){ return this.ramMemoriaGB; }
+                int getAlmacenamientoGB(){ return this.almacenamientoGB; }
+                int[] getCodigo(){ return this.codigo; }
+                setMarca(String nuevaMarca){ this.marca <- nuevaMarca; }
+                setPrecio(double nuevoPrecio){ this.precio <- nuevoPrecio; }
+                setModelo(String nuevoModelo){ this.modelo <- nuevoModelo; }
+                setRamMemoriaGB(int nuevaRam){ this.ramMemoriaGB <- nuevaRam; }
+                setAlmacenamientoGB(int nuevoAlmacenamiento){ this.almacenamientoGB <- nuevoAlmacenamiento; }
+                setCodigo(int[] nuevoCodigo){
+                    for(int i <- 0; i < 7; i++){
+                        this.codigo[i] <- nuevoCodigo[i];
+                    }
+                }
+
+                ingresarCodigo(int c0, int c1, int c2, int c3, int c4, int c5, int c6){
+                    this.codigo[0] <- c0;
+                    this.codigo[1] <- c1;
+                    this.codigo[2] <- c2;
+                    this.codigo[3] <- c3;
+                    this.codigo[4] <- c4;
+                    this.codigo[5] <- c5;
+                    this.codigo[6] <- c6;
+                    print("Codigo ingresado: " + to_string(this.codigo[0]) + to_string(this.codigo[1]) + to_string(this.codigo[2]) + to_string(this.codigo[3]) + to_string(this.codigo[4]) + to_string(this.codigo[5]) + to_string(this.codigo[6]));
+                }
+
+                instalarBancaMovil(){
+                    double espacioRequeridoMB <- 60.0;
+                    double espacioDisponibleMB <- this.almacenamientoGB * 1024.0;
+
+                    if (espacioDisponibleMB >= espacioRequeridoMB) {
+                        this.almacenamientoGB <- this.almacenamientoGB - (espacioRequeridoMB / 1024.0);
+                        print("Aplicacion 'Banca Movil' instalada. Almacenamiento restante: " + this.almacenamientoGB + " GB");
+                    } else {
+                        print("No hay suficiente espacio para instalar 'Banca Movil'. Espacio requerido: " + espacioRequeridoMB + " MB, Espacio disponible: " + espacioDisponibleMB + " MB");
+                    }
+                }
+                mostrarDatos(){
+                    print("Marca: " + this.marca + ", Modelo: " + this.modelo + ", Precio: " + this.precio +
+                          ", RAM: " + this.ramMemoriaGB + "GB, Almacenamiento: " + this.almacenamientoGB + "GB");
+                    String codStr <- "";
+                    for(int i <- 0; i < 7; i++){
+                        codStr <- codStr + to_string(this.codigo[i]);
+                    }
+                    print("Codigo: " + codStr);
+                }
+        }
+    - class mainTiendaMovil{
+            Function main(){
+                Movil movil1 <- new Movil();
+                movil1.setMarca("Huawei");
+                movil1.setModelo("P40 Lite");
+                movil1.setPrecio(300.0);
+                movil1.setRamMemoriaGB(6);
+                movil1.setAlmacenamientoGB(128);
+                movil1.ingresarCodigo(1,2,3,4,5,6,7);
+
+                int[] codMovil2 <- {7,6,5,4,3,2,1};
+                Movil movil2 <- new Movil("Samsung", 500.0, "Galaxy A52", 8, 64, codMovil2);
+
+                movil1.mostrarDatos();
+                movil1.instalarBancaMovil();
+                movil1.mostrarDatos();
+
+                movil2.mostrarDatos();
+                movil2.instalarBancaMovil();
+                movil2.mostrarDatos();
+            }
+        }
+
+6. Sean las siguientes clases: :
+   Inventario
+   -nombre
+   -direccion
+   -nroActivos
+   -activos [50,3]
+   Activo
+   -nombre
+   -codigo
+   -fecha de compra
+   -precio
+   -tiempo de vida
+   Dónde: activo[i][0] = nombre, activo [i][1] = codigo , activo [i][2] = fechaCompra, activo [i][3] = precio, activo [i][4] = tiempovida . Se pide: a) Instanciar un objeto Inventario y 3 objetos activo de diferente manera y mostrar datos b) Dada la fecha Z, verificar si un activo a cumplido si tiempo de vida, si es así, emitir un mensaje de que requiere ser revaluado. c) Mostrar cual es el activo más caro d) Adicionar un objeto activo al inventario, siempre y cuando el activo no exista 
+    - class Activo{
+            private:
+                String nombre;
+                String codigo;
+                String fechaCompra;
+                double precio;
+                int vidaUtilAnos;
+            public:
+                Activo(String nombre, String codigo, String fechaCompra, double precio, int vidaUtilAnos){
+                    this.nombre <- nombre;
+                    this.codigo <- codigo;
+                    this.fechaCompra <- fechaCompra;
+                    this.precio <- precio;
+                    this.vidaUtilAnos <- vidaUtilAnos;
+                }
+                String getNombre(){ return this.nombre; }
+                String getCodigo(){ return this.codigo; }
+                double getPrecio(){ return this.precio; }
+
+                boolean haCompletadoVidaUtil(String fechaActual){
+                    int anioCompra <- stringToInteger(substring(this.fechaCompra, 0, 4));
+                    int mesCompra <- stringToInteger(substring(this.fechaCompra, 5, 7));
+                    int diaCompra <- stringToInteger(substring(this.fechaCompra, 8, 10));
+
+                    int anioActual <- stringToInteger(substring(fechaActual, 0, 4));
+                    int mesActual <- stringToInteger(substring(fechaActual, 5, 7));
+                    int diaActual <- stringToInteger(substring(fechaActual, 8, 10));
+
+                    int anosTranscurridos <- anioActual - anioCompra;
+                    if (mesActual < mesCompra || (mesActual == mesCompra && diaActual < diaCompra)) {
+                        anosTranscurridos <- anosTranscurridos - 1;
+                    }
+
+                    if (anosTranscurridos >= this.vidaUtilAnos) {
+                        print("Activo " + this.nombre + " (Codigo: " + this.codigo + ") ha completado su vida util y necesita ser revaluado.");
+                        return true;
+                    }
+                    return false;
+                }
+                mostrarDatos(){
+                    print("Activo: " + this.nombre + ", Codigo: " + this.codigo + ", Fecha Compra: " + this.fechaCompra +
+                          ", Precio: " + this.precio + ", Vida Util: " + this.vidaUtilAnos + " anos.");
+                }
+        }
+    - class Inventario{
+            private:
+                String nombre;
+                String direccion;
+                int numActivos;
+                Activo[] activos;
+            public:
+                Inventario(String nombre, String direccion){
+                    this.nombre <- nombre;
+                    this.direccion <- direccion;
+                    this.numActivos <- 0;
+                    this.activos <- new Activo[50];
+                }
+                anadirActivo(Activo nuevoActivo){
+                    boolean existe <- false;
+                    for(int i <- 0; i < this.numActivos; i++){
+                        if(this.activos[i].getCodigo() == nuevoActivo.getCodigo()){
+                            existe <- true;
+                            print("El activo con codigo " + nuevoActivo.getCodigo() + " ya existe en el inventario.");
+                            break;
+                        }
+                    }
+                    if (!existe && this.numActivos < 50) {
+                        this.activos[this.numActivos] <- nuevoActivo;
+                        this.numActivos <- this.numActivos + 1;
+                        print("Activo " + nuevoActivo.getNombre() + " anadido al inventario.");
+                    } else if (this.numActivos >= 50) {
+                        print("El inventario esta lleno, no se pueden anadir mas activos.");
+                    }
+                }
+                mostrarActivoMasCaro(){
+                    if (this.numActivos == 0) {
+                        print("No hay activos en el inventario.");
+                        return;
+                    }
+                    Activo masCaro <- this.activos[0];
+                    for(int i <- 1; i < this.numActivos; i++){
+                        if(this.activos[i].getPrecio() > masCaro.getPrecio()){
+                            masCaro <- this.activos[i];
+                        }
+                    }
+                    print("El activo mas caro es: " + masCaro.getNombre() + " con precio de " + masCaro.getPrecio());
+                }
+                mostrarTodosLosActivos(){
+                    print("Inventario: " + this.nombre + " (" + this.direccion + ")");
+                    for(int i <- 0; i < this.numActivos; i++){
+                        this.activos[i].mostrarDatos();
+                    }
+                }
+        }
+    - class mainInventario{
+            Function main(){
+                Inventario miInventario <- new Inventario("Almacen Principal", "Calle LIma");
+
+                Activo activo1 <- new Activo("Laptop", "LAP001", "2020-01-15", 1200.0, 4);
+                Activo activo2 <- new Activo("Impresora", "IMP002", "2023-05-20", 350.0, 5);
+                Activo activo3 <- new Activo("Monitor", "MON003", "2024-03-10", 200.0, 3);
+
+                miInventario.anadirActivo(activo1);
+                miInventario.anadirActivo(activo2);
+                miInventario.anadirActivo(activo3);
+
+                miInventario.mostrarTodosLosActivos();
+
+                activo1.haCompletadoVidaUtil("2025-07-08");
+                activo2.haCompletadoVidaUtil("2025-07-08");
+
+                miInventario.mostrarActivoMasCaro();
+
+                Activo activo4 <- new Activo("Teclado", "mac", "2025-01-01", 80.0, 2);
+                miInventario.anadirActivo(activo4);
+                miInventario.anadirActivo(activo1);
+                miInventario.mostrarTodosLosActivos();
+            }
+        }
+
+
+POLIMORFISMO
+
+I. Clases abstractas
+
+1. Escribir las clases para la gestión de productos.
+Los productos tienen los siguientes atributos:
+? Nombre
+? Precio
+
+Se distinguen dos tipos de productos:
+? Estándar: Incluye un atributo adicional llamado sección.
+? Ofertado: Incluye un atributo llamado días, que es el número de días que faltan para que la oferta finalice.
+
+Además de constructores, getters y setters, tendrán un método obtenerPrecioPedido() que recibe como parámetro las unidades pedidas del producto y devuelve el precio final.
+
+Este método funcionará de forma diferente si es un producto estándar u ofertado:
+? Si es estándar, devolverá el número de unidades por el precio, aplicando un 15% de descuento en caso de que el número de unidades sea igual o superior a 5.
+? Si es ofertado, independientemente del número de unidades:
+  o Si le queda 1 día a la oferta aplicará un 20% de descuento.
+  o Si le quedan 2 o 3 a la oferta, se aplicará un 15% de descuento.
+  o Si le quedan más de 3 días se aplicará un 10% de descuento.
+
+Después, se creará un programa principal y se crearán dos pedidos de productos estándar y 3 de productos ofertados con ofertas que caducan en 2 días, asignando un precio cualquiera a cada uno.
+Después mostrar el total del pedido teniendo en cuenta que se compran 5 unidades de cada uno.
+
+abstract class Producto {
+    private:
+        String nombre;
+        double precio;
+    public:
+        Producto(String nombre, double precio) {
+            this.nombre <- nombre;
+            this.precio <- precio;
+        }
+        String getNombre() {
+            return this.nombre;
+        }
+        double getPrecio() {
+            return this.precio;
+        }
+        setNombre(String nuevoNombre) {
+            this.nombre <- nuevoNombre;
+        }
+        setPrecio(double nuevoPrecio) {
+            this.precio <- nuevoPrecio;
+        }
+        abstract double obtenerPrecioPedido(int unidades);
+}
+
+class Estandar extends Producto {
+    private:
+        String seccion;
+    public:
+        Estandar(String nombre, double precio, String seccion): base(nombre, precio) {
+            this.seccion <- seccion;
+        }
+        String getSeccion() {
+            return this.seccion;
+        }
+        setSeccion(String nuevaSeccion) {
+            this.seccion <- nuevaSeccion;
+        }
+        override double obtenerPrecioPedido(int unidades) {
+            double precioTotal <- unidades * this.precio;
+            if (unidades >= 5) {
+                precioTotal <- precioTotal * 0.85;
+            }
+            return precioTotal;
+        }
+}
+
+class Oferta extends Producto {
+    private:
+        int diasRestantes;
+    public:
+        Oferta(String nombre, double precio, int diasRestantes): base(nombre, precio) {
+            this.diasRestantes <- diasRestantes;
+        }
+        int getDiasRestantes() {
+            return this.diasRestantes;
+        }
+        setDiasRestantes(int nuevosDias) {
+            this.diasRestantes <- nuevosDias;
+        }
+        override double obtenerPrecioPedido(int unidades) {
+            double precioTotal <- unidades * this.precio;
+            if (this.diasRestantes == 1) {
+                precioTotal <- precioTotal * 0.80;
+            } else if (this.diasRestantes == 2 || this.diasRestantes == 3) {
+                precioTotal <- precioTotal * 0.85;
+            } else if (this.diasRestantes > 3) {
+                precioTotal <- precioTotal * 0.90;
+            }
+            return precioTotal;
+        }
+}
+
+class mainProductos {
+    Estandar prodEst1 <- new Estandar("Libro Programacion", 50.0, "Libros");
+    Estandar prodEst2 <- new Estandar("Audifonos", 80.0, "Electronica");
+    Oferta prodOf1 <- new Oferta("Teclado Gaming", 120.0, 2);
+    Oferta prodOf2 <- new Oferta("Mouse Inalambrico", 40.0, 2);
+    Oferta prodOf3 <- new Oferta("Webcam HD", 60.0, 2);
+    int unidades <- 5;
+    double total <- 0.0;
+    total <- total + prodEst1.obtenerPrecioPedido(unidades);
+    total <- total + prodEst2.obtenerPrecioPedido(unidades);
+    total <- total + prodOf1.obtenerPrecioPedido(unidades);
+    total <- total + prodOf2.obtenerPrecioPedido(unidades);
+    total <- total + prodOf3.obtenerPrecioPedido(unidades);
+    print("Total del pedido: " + total);
+}
+
+II. Sobrecarga de métodos
+
+2. Crea una clase Area que calcule el área de diferentes figuras:
+a) calcularArea(int lado) ? área del cuadrado
+b) calcularArea(double radio) ? área del círculo
+c) calcularArea(int base, int altura) ? área del rectángulo
+
+class Area {
+    public:
+        double calcularArea(int lado) {
+            return lado * lado;
+        }
+        double calcularArea(double radio) {
+            return 3.14159 * radio * radio;
+        }
+        double calcularArea(int base, int altura) {
+            return base * altura;
+        }
+}
+
+class mainArea {
+    Area a <- new Area();
+    print(a.calcularArea(4));
+    print(a.calcularArea(3.5));
+    print(a.calcularArea(5, 8));
+}
+
+3. Crea una clase base InstrumentoMusical con el método tocar().
+Crea las subclases Guitarra, Piano, Tambor, cada una sobrescribiendo el método tocar() para mostrar un mensaje diferente.
+
+class InstrumentoMusical {
+    public:
+        tocar() {
+            print("El instrumento suena.");
+        }
+}
+
+class Guitarra extends InstrumentoMusical {
+    public:
+        override tocar() {
+            print("La guitarra suena: strum, strum!");
+        }
+}
+
+class Piano extends InstrumentoMusical {
+    public:
+        override tocar() {
+            print("El piano suena: plin, plin!");
+        }
+}
+
+class Tambor extends InstrumentoMusical {
+    public:
+        override tocar() {
+            print("El tambor suena: bum, bum!");
+        }
+}
+
+class mainInstrumento {
+    Guitarra g <- new Guitarra();
+    Piano p <- new Piano();
+    Tambor t <- new Tambor();
+    g.tocar();
+    p.tocar();
+    t.tocar();
+}
+
+III. Sobrecarga de operadores
+
+5. Crea una clase Fecha con atributos día, mes, año.  
+Sobrecarga el operador == para comparar si dos fechas son iguales.
+
+class Fecha {
+    private:
+        int dia;
+        int mes;
+        int anio;
+    public:
+        Fecha(int d, int m, int a) {
+            this.dia <- d;
+            this.mes <- m;
+            this.anio <- a;
+        }
+        boolean operator==(Fecha otra) {
+            return this.dia == otra.dia and this.mes == otra.mes and this.anio == otra.anio;
+        }
+}
+
+class mainFecha {
+    public:
+        mainFecha() {
+            Fecha fecha1 <- new Fecha(9, 7, 2025);
+            Fecha fecha2 <- new Fecha(9, 7, 2025);
+            Fecha fecha3 <- new Fecha(10, 7, 2025);
+            print("¿fecha1 es igual a fecha2? " + (fecha1 == fecha2));
+            print("¿fecha1 es igual a fecha3? " + (fecha1 == fecha3));
+        }
+}
+
+6. Crea una clase Tiempo con atributos horas, minutos, segundos.  
+Realiza las siguientes operaciones:  
+a) Sobrecarga el operador - para calcular la diferencia entre dos tiempos.  
+b) Sobrecarga el operador + para calcular la suma de dos objetos Tiempo, devuelve otro Tiempo.  
+c) Sobrecarga el operador == para devolver un mensaje que muestre la hora si los dos objetos tienen el mismo tiempo.
+
+class Tiempo {
+    private:
+        int horas;
+        int minutos;
+        int segundos;
+    public:
+        Tiempo(int h, int m, int s) {
+            this.horas <- h;
+            this.minutos <- m;
+            this.segundos <- s;
+        }
+        Tiempo operator+(Tiempo otro) {
+            int s <- this.segundos + otro.segundos;
+            int m <- this.minutos + otro.minutos + (s / 60);
+            int h <- this.horas + otro.horas + (m / 60);
+            s <- s mod 60;
+            m <- m mod 60;
+            h <- h mod 24;
+            return new Tiempo(h, m, s);
+        }
+        Tiempo operator-(Tiempo otro) {
+            int totalSegundos1 <- this.horas * 3600 + this.minutos * 60 + this.segundos;
+            int totalSegundos2 <- otro.horas * 3600 + otro.minutos * 60 + otro.segundos;
+            int diff <- totalSegundos1 - totalSegundos2;
+            if (diff < 0) diff <- -diff;
+            int h <- diff / 3600;
+            diff <- diff mod 3600;
+            int m <- diff / 60;
+            int s <- diff mod 60;
+            return new Tiempo(h, m, s);
+        }
+        boolean operator==(Tiempo otro) {
+            if (this.horas == otro.horas and this.minutos == otro.minutos and this.segundos == otro.segundos) {
+                print("Ambos tiempos son iguales: " + this.horas + ":" + this.minutos + ":" + this.segundos);
+                return true;
+            }
+            return false;
+        }
+        string toString() {
+            return this.horas + ":" + this.minutos + ":" + this.segundos;
+        }
+}
+
+class mainTiempo {
+    public:
+        mainTiempo() {
+            Tiempo t1 <- new Tiempo(8, 30, 15);
+            Tiempo t2 <- new Tiempo(17, 45, 50);
+            Tiempo suma <- t1 + t2;
+            Tiempo diff <- t2 - t1;
+            print("Suma de tiempos: " + suma.toString());
+            print("Diferencia entre tiempos: " + diff.toString());
+            Tiempo t3 <- new Tiempo(8, 30, 15);
+            boolean iguales <- t1 == t3;
+            print("t1 y t3 iguales? " + iguales);
+        }
+}
+
+7. Sobrecarga el operador > para comparar dos objetos Tiempo y devolver un mensaje que muestre la hora del tiempo mayor.
+
+class TiempoComparacion {
+    private:
+        int horas;
+        int minutos;
+        int segundos;
+    public:
+        TiempoComparacion(int h, int m, int s) {
+            this.horas <- h;
+            this.minutos <- m;
+            this.segundos <- s;
+        }
+        boolean operator>(TiempoComparacion otro) {
+            int tiempo1 <- this.horas * 3600 + this.minutos * 60 + this.segundos;
+            int tiempo2 <- otro.horas * 3600 + otro.minutos * 60 + otro.segundos;
+            if (tiempo1 > tiempo2) {
+                print("El tiempo mayor es: " + this.horas + ":" + this.minutos + ":" + this.segundos);
+                return true;
+            }
+            return false;
+        }
+}
+
+class mainTiempoComparacion {
+    public:
+        mainTiempoComparacion() {
+            TiempoComparacion t1 <- new TiempoComparacion(14, 0, 0);
+            TiempoComparacion t2 <- new TiempoComparacion(9, 30, 0);
+            boolean mayor <- t1 > t2;
+            print("¿t1 es mayor que t2? " + mayor);
+        }
+}
+
+8. Dada la clase Fraccion con atributos numerador y denominador:  
+a) Sobrecarga el operador +, para realizar la suma de dos objetos Fraccion  
+b) Sobrecarga el operador -, para realizar la resta  
+c) Sobrecarga el operador *, para la multiplicación  
+d) Sobrecarga el operador /, para la división  
+e) Sobrecarga el operador !, para obtener el mcd (máximo común divisor)
+
+class Fraccion {
+    private:
+        int numerador;
+        int denominador;
+    public:
+        Fraccion(int n, int d) {
+            this.numerador <- n;
+            this.denominador <- d;
+        }
+        Fraccion operator+(Fraccion otra) {
+            int num <- this.numerador * otra.denominador + otra.numerador * this.denominador;
+            int den <- this.denominador * otra.denominador;
+            return new Fraccion(num, den);
+        }
+        Fraccion operator-(Fraccion otra) {
+            int num <- this.numerador * otra.denominador - otra.numerador * this.denominador;
+            int den <- this.denominador * otra.denominador;
+            return new Fraccion(num, den);
+        }
+        Fraccion operator*(Fraccion otra) {
+            int num <- this.numerador * otra.numerador;
+            int den <- this.denominador * otra.denominador;
+            return new Fraccion(num, den);
+        }
+        Fraccion operator/(Fraccion otra) {
+            int num <- this.numerador * otra.denominador;
+            int den <- this.denominador * otra.numerador;
+            return new Fraccion(num, den);
+        }
+        int operator!() {
+            int a <- this.numerador;
+            int b <- this.denominador;
+            if (a < 0) a <- -a;
+            if (b < 0) b <- -b;
+            while (b != 0) {
+                int temp <- b;
+                b <- a mod b;
+                a <- temp;
+            }
+            return a;
+        }
+        string toString() {
+            return this.numerador + "/" + this.denominador;
+        }
+}
+
+class mainFraccion {
+    public:
+        mainFraccion() {
+            Fraccion f1 <- new Fraccion(3, 4);
+            Fraccion f2 <- new Fraccion(2, 5);
+            Fraccion suma <- f1 + f2;
+            Fraccion resta <- f1 - f2;
+            Fraccion mult <- f1 * f2;
+            Fraccion divi <- f1 / f2;
+            int mcd1 <- !f1;
+            print("Suma: " + suma.toString());
+            print("Resta: " + resta.toString());
+            print("Multiplicación: " + mult.toString());
+            print("División: " + divi.toString());
+            print("MCD de f1: " + mcd1);
+        }
+}
+ 
+
